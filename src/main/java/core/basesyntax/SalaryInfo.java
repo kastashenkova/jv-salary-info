@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class SalaryInfo {
+    private static final int INDEX_DATE = 0;
     private static final int INDEX_NAME = 1;
     private static final int INDEX_HOURS = 2;
     private static final int INDEX_RATE = 3;
@@ -18,7 +19,7 @@ public class SalaryInfo {
         int[] salaries = new int[names.length];
         for (String datum : data) {
             String[] parts = (datum.split(" "));
-            LocalDate curr = LocalDate.parse(parts[0], FORMATTER);
+            LocalDate curr = LocalDate.parse(parts[INDEX_DATE], FORMATTER);
             if (!curr.isBefore(startDate) && !curr.isAfter(endDate)) {
                 for (int j = 0; j < names.length; j++) {
                     if (names[j].equals(parts[INDEX_NAME])) {
@@ -30,6 +31,8 @@ public class SalaryInfo {
             }
         }
         StringBuilder res = new StringBuilder();
+        res.append("Report for period ").append(dateFrom)
+                .append(" - ").append(dateTo);
         for (int i = 0; i < names.length; i++) {
             res.append(LINE_SEPARATOR)
                     .append(names[i])
@@ -48,9 +51,6 @@ public class SalaryInfo {
                 "13.02.2019 John 7 100", "26.04.2019 Kate 9 100"};
         String dateFrom = "01.04.2019";
         String dateTo = "30.04.2019";
-        StringBuilder res = new StringBuilder();
-        System.out.println(res.append("Report for period ")
-                .append(dateFrom).append(" - ").append(dateTo)
-                .append(si.getSalaryInfo(names, data, dateFrom, dateTo)));
+        System.out.println(si.getSalaryInfo(names, data, dateFrom, dateTo));
     }
 }
