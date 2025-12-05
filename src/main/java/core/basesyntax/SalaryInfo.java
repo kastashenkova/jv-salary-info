@@ -7,7 +7,8 @@ public class SalaryInfo {
     private static final int INDEX_NAME = 1;
     private static final int INDEX_HOURS = 2;
     private static final int INDEX_RATE = 3;
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter
+            .ofPattern("dd.MM.yyyy");
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
     public String getSalaryInfo(String[] names, String[] data,
@@ -21,7 +22,8 @@ public class SalaryInfo {
             if (!curr.isBefore(startDate) && !curr.isAfter(endDate)) {
                 for (int j = 0; j < names.length; j++) {
                     if (names[j].equals(parts[INDEX_NAME])) {
-                        salaries[j] += Integer.parseInt(parts[INDEX_HOURS]) * Integer.parseInt(parts[INDEX_RATE]);
+                        salaries[j] += Integer.parseInt(parts[INDEX_HOURS])
+                                * Integer.parseInt(parts[INDEX_RATE]);
                         break;
                     }
                 }
@@ -48,7 +50,7 @@ public class SalaryInfo {
         String dateTo = "30.04.2019";
         StringBuilder res = new StringBuilder();
         System.out.println(res.append("Report for period ")
-                .append(dateFrom).append(" - ").append(dateTo).
-                append(si.getSalaryInfo(names, data, dateFrom, dateTo)));
+                .append(dateFrom).append(" - ").append(dateTo)
+                .append(si.getSalaryInfo(names, data, dateFrom, dateTo)));
     }
 }
